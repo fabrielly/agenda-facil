@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Fácil Pro | Gestão de Atendimentos</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho Personalizável -->
+    <header class="topbar">
+      <div>
+        <h1 id="nome-estabelecimento">Studio Beleza & Estilo</h1>
+        <p class="subtitulo">Painel de Gestão e Agendamentos</p>
+      </div>
+      <button class="btn-config" onclick="editarEstabelecimento()">⚙️ Personalizar Loja</button>
+    </header>
+
+    <!-- Cards de Resumo (O que faz o cliente ver valor) -->
+    <section class="dashboard-cards">
+      <div class="card">
+        <span>Agendamentos Hoje</span>
+        <strong id="total-hoje">0</strong>
+      </div>
+      <div class="card">
+        <span>Faturamento Previsto (Hoje)</span>
+        <strong id="faturamento-hoje" class="valor-destaque">R$ 0,00</strong>
+      </div>
+      <div class="card">
+        <span>Total na Agenda</span>
+        <strong id="total-geral">0</strong>
+      </div>
+    </section>
+
+    <main class="main-grid">
+      <!-- Formulário de Novo Agendamento -->
+      <section class="panel form-panel">
+        <h2>Novo Agendamento</h2>
+        <form id="form-agendamento">
+          <div class="input-group">
+            <label for="cliente">Nome do(a) Cliente</label>
+            <input type="text" id="cliente" placeholder="Ex: Ana Paula" required>
+          </div>
+
+          <div class="input-group">
+            <label for="whatsapp">WhatsApp (com DDD)</label>
+            <input type="tel" id="whatsapp" placeholder="Ex: 61999999999" required>
+          </div>
+
+          <div class="input-group">
+            <label for="servico">Serviço</label>
+            <select id="servico" required>
+              <!-- Preenchido via JS -->
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="input-group">
+              <label for="data">Data</label>
+              <input type="date" id="data" required>
+            </div>
+            <div class="input-group">
+              <label for="hora">Horário</label>
+              <input type="time" id="hora" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">+ Agendar Horário</button>
+        </form>
+
+        <!-- Cadastro Rápido de Serviços -->
+        <div class="servicos-box">
+          <h3>Cadastrar Novo Serviço</h3>
+          <div class="row">
+            <input type="text" id="novo-servico-nome" placeholder="Ex: Escova">
+            <input type="number" id="novo-servico-preco" placeholder="R$ 50" step="0.01">
+            <button type="button" class="btn-secondary" onclick="adicionarServico()">Add</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista da Agenda -->
+      <section class="panel agenda-panel">
+        <div class="agenda-header">
+          <h2>Agenda de Atendimentos</h2>
+          <input type="date" id="filtro-data" onchange="renderizarAgenda()">
+        </div>
+
+        <div id="lista-agendamentos" class="lista-agendamentos">
+          <!-- Cards de agendamento aparecem aqui -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
